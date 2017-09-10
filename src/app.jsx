@@ -5,13 +5,13 @@ import Nav from "./nav.jsx";
 
 class App extends Component{
     state = {
-        value: "",
+        title: "",
         textarea: "",
         events: [
-            {value: "First One", textarea: "oneoneoneoen", done: false}, 
-            {value: "Second One", textarea: "twotawdfasdf", done: false}, 
-            {value: "third 333", textarea: "thereasdfdfasdif", done: false},
-            {value: "Four444", textarea: "fourasdfasdgh", done: false}
+            {title: "First One", textarea: "To work with Kubernetes, you use Kubernetes API objects to describe your cluster’s desired state: what applications or other workloads you want to run, what container images they use, the number of replicas, what network and disk resources you want to make available, ", done: false}, 
+            {title: "SEcond", textarea: "ernetes contains a number of abstractions that represent the state of your system: deployed containerized applications and workloads, their associated network and disk resources, and other information about what your cluste", done: false}, 
+            {title: "third 333", textarea: "he Kubernetes master is responsible for maintaining the desired state for your cluster. When you interact with Kubernetes, such as by using the kubectl command-line interface, you’re communicating with your cluste", done: false},
+            {title: "Four444", textarea: "des in a cluster are the machines (VMs, physical servers, etc) that run your appl", done: false}
         ]
     }
     
@@ -19,11 +19,11 @@ class App extends Component{
     handleSubmit = (event) => {
         event.preventDefault();        
         this.setState((prevState, props) => ({            
-            value: "",
+            title: "",
             textarea: "",
             events: prevState.events.concat({
                 done: false, 
-                value: this.state.value,
+                title: this.state.title,
                 textarea: this.state.textarea
             })
         }));
@@ -32,7 +32,7 @@ class App extends Component{
     handleChange = (event) => {        
         this.setState((prevState, props) => {
             return {
-                value: event,
+                title: event,
                 textarea: prevState.textarea,
                 events: prevState.events
             };
@@ -42,7 +42,7 @@ class App extends Component{
     handleTextareaChange = (event) => {
         this.setState((prevState, props) => {
             return {
-                value: prevState.value,
+                title: prevState.title,
                 events: prevState.events,
                 textarea: event                
             };
@@ -61,7 +61,7 @@ class App extends Component{
         return (
             <div style = {style}>
                 <Nav/>                
-                <EntryForm formValue = {this.state.value} 
+                <EntryForm formValue = {this.state.title} 
                     formSubmit = {this.handleSubmit} 
                     formChange = {this.handleChange}
                     formContent = {this.state.textarea}

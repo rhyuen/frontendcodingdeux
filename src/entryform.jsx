@@ -10,16 +10,52 @@ class EntryForm extends Component{
     }
 
     render(){
-        const style = {
+        const formStyle = {
             display: "flex",
-            flexDirection: "column"
+            flexDirection: "column",
+            width: "730px",            
+        };
+
+        const titleStyle = {
+            width: "100%",
+            background: "red"
+        };
+        const inputTitleStyle = {
+            width: "100%"
+        };        
+
+        const textAreaStyle = {
+            width: "100%",
+            background: "pink"
+        };
+        const textAreaInputStyle = {
+            width: "100%"            
+        };
+
+        const submitRowStyle = {
+            display: "flex",
+            justifyContent: "space-between"
         };
 
         return (
-            <form onSubmit = {this.props.formSubmit} style = {style}>
-                <input type = "text" value = {this.props.formValue} onChange = {this.handleFormChange}/>
-                <textarea value = {this.props.formContent} onChange = {this.handleTextareaChange}/>
-                <input type = "submit" value = "Submit"/>
+            <form onSubmit = {this.props.formSubmit} style = {formStyle}>
+                <div style = {titleStyle}>
+                    <input type = "text" 
+                    value = {this.props.formValue} 
+                    onChange = {this.handleFormChange}
+                    style = {inputTitleStyle}/>
+                </div>
+                <div style = {textAreaStyle}>
+                    <textarea value = {this.props.formContent} 
+                    onChange = {this.handleTextareaChange}
+                    style = {textAreaInputStyle}
+                    rows = "4"
+                    cols = "50"/>
+                </div>
+                <div style = {submitRowStyle}>
+                    <span>{150 - this.props.formContent.length} characters left</span>
+                    <span><input type = "submit" value = "Submit"/></span>
+                </div>                
             </form>
         );
     }
