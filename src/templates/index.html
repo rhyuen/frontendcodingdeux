@@ -4,9 +4,58 @@
         <meta charset="UTF-8">
         <title>react thingie, super duper</title>
         <style>
-            html{width: 100%; height: 100%; border: 0; margin: 0;}
+            html{width: 100%; height: 100%; border: 0; margin: 0; font-family: "Helvetica"; font-size: 12px;}
             body{width: 100%; height: 100%; background: pink; margin: 0;}
             #app{display: flex; background: paleturquoise; border: 0; height: 100%; width: 100%; justify-content:center;}            
+
+
+            .entry{
+                display: flex;
+                flex-grow: 1;
+                justify-content: space-between;
+            }
+            .entry__main{                
+                padding-left: 60px;
+                width: 75%;
+            }
+            .entry__main__content{
+                background: white;
+                padding: 20px 0px;
+            }
+            .entry__main__tags{
+                background: cornflowerblue;
+                line-height: 40px;
+            }
+            .entry__meta{
+                background: tan;
+                width: 25%;
+            }
+            
+            .container{
+                display: flex;
+                flex-direction: column;
+                width: 590px;
+            }
+            .container__form{
+                padding: 60px 60px;
+                background: grey;
+            }
+            .container__form__title{
+                width: 100%;
+                background: red;
+            }
+            .container__form__title__input{
+                width: 100%;
+            }
+            .container__form__textarea{
+                width: 100%;                
+            }
+            .container__form__bottom{
+                display: flex;
+                justify-content: space-between;
+                flex-wrap: wrap;
+            }
+
         </style>
     </head>
     <body>

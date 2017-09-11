@@ -1,13 +1,8 @@
 import React, {Component} from "react";
 
 const style = {
-    width: "730px",
+    width: "590px",
     background: "brown"    
-};
-const entryStyle = {
-    display: "flex",
-    flexGrow: "1",
-    justifyContent: "space-between"
 };
 
 export default (props) => (
@@ -17,12 +12,13 @@ export default (props) => (
             {
                 props.entries.map((entry, index) => {
                     return (
-                        <div name = {entry.title} key = {index} style = {entryStyle}>
-                            <span>
+                        <div name = {entry.title} key = {index} className = "entry">
+                            <span className = "entry__main">
                                 <label><input type = "checkbox"/><strong>{entry.title}</strong></label><br/>
-                                <div>{entry.textarea}</div>
+                                <div className = "entry__main__content">{entry.textarea}</div>
+                                <div className = "entry__main__tags">{entry.textarea.split(" ").filter((item) => item.length > 9)}</div>
                             </span>
-                            <span>
+                            <span className = "entry__meta">
                                 {entry.textarea.length}
                             </span>
                         </div>

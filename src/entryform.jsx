@@ -9,54 +9,29 @@ class EntryForm extends Component{
         this.props.textareaChange(event.target.value);
     }
 
-    render(){
-        const formStyle = {
-            display: "flex",
-            flexDirection: "column",
-            width: "730px",            
-        };
-
-        const titleStyle = {
-            width: "100%",
-            background: "red"
-        };
-        const inputTitleStyle = {
-            width: "100%"
-        };        
-
-        const textAreaStyle = {
-            width: "100%",
-            background: "pink"
-        };
-        const textAreaInputStyle = {
-            width: "100%"            
-        };
-
-        const submitRowStyle = {
-            display: "flex",
-            justifyContent: "space-between"
-        };
-
+    render(){                        
+    
         return (
-            <form onSubmit = {this.props.formSubmit} style = {formStyle}>
-                <div style = {titleStyle}>
-                    <input type = "text" 
-                    value = {this.props.formValue} 
-                    onChange = {this.handleFormChange}
-                    style = {inputTitleStyle}/>
-                </div>
-                <div style = {textAreaStyle}>
-                    <textarea value = {this.props.formContent} 
-                    onChange = {this.handleTextareaChange}
-                    style = {textAreaInputStyle}
-                    rows = "4"
-                    cols = "50"/>
-                </div>
-                <div style = {submitRowStyle}>
-                    <span>{150 - this.props.formContent.length} characters left</span>
-                    <span><input type = "submit" value = "Submit"/></span>
-                </div>                
-            </form>
+            <div className = "container">
+                <form onSubmit = {this.props.formSubmit} className = "container__form">
+                    <div className = "container__form__title">
+                        <input type = "text" 
+                        className = "container__form__title__input"
+                        value = {this.props.formValue} 
+                        onChange = {this.handleFormChange}/>
+                    </div>
+                    <div className = "container__form__textarea">
+                        <textarea value = {this.props.formContent} 
+                        onChange = {this.handleTextareaChange}                        
+                        rows = "3"
+                        cols = "60"/>
+                    </div>
+                    <div className = "container__form__bottom">
+                        <span>{150 - this.props.formContent.length} characters left</span>
+                        <span><input type = "submit" value = "Submit"/></span>
+                    </div>                
+                </form>
+            </div>
         );
     }
 }

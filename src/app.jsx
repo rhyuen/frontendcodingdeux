@@ -59,14 +59,18 @@ class App extends Component{
         };
 
         return (
-            <div style = {style}>
-                <Nav/>                
-                <EntryForm formValue = {this.state.title} 
-                    formSubmit = {this.handleSubmit} 
-                    formChange = {this.handleChange}
-                    formContent = {this.state.textarea}
-                    textareaChange = {this.handleTextareaChange}/>
-                <EntryList entries={this.state.events}/>                
+            <div style = {style}>                
+                <Nav/>
+                <div></div>
+                <div>     
+                    <EntryForm formValue = {this.state.title} 
+                        formSubmit = {this.handleSubmit} 
+                        formChange = {this.handleChange}
+                        formContent = {this.state.textarea}
+                        textareaChange = {this.handleTextareaChange}/>
+                    <EntryList entries={this.state.events}/>                
+                </div>
+                <div></div>
             </div>
         );
     }

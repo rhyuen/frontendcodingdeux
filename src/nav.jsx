@@ -15,7 +15,7 @@ const style = {
 };
 
 const innerNavStyle = {
-    width: "730px",
+    width: "1190px",
     background: "red",
     display: "flex",    
     fontFamily: "Helvetica",
