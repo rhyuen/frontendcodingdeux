@@ -59,9 +59,7 @@ class App extends Component{
         };
 
         return (
-            <div style = {style}>                
-                <Nav/>
-                <div></div>
+            <div style = {style}>                                                
                 <div>     
                     <EntryForm formValue = {this.state.title} 
                         formSubmit = {this.handleSubmit} 

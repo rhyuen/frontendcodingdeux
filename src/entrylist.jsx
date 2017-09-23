@@ -16,7 +16,7 @@ export default (props) => (
                             <span className = "entry__main">
                                 <label><input type = "checkbox"/><strong>{entry.title}</strong></label><br/>
                                 <div className = "entry__main__content">{entry.textarea}</div>
-                                <div className = "entry__main__tags">{entry.textarea.split(" ").filter((item) => item.length > 9)}</div>
+                                <div className = "entry__main__tags">{entry.textarea.split(" ").filter((item) => item.length > 12)}</div>
                             </span>
                             <span className = "entry__meta">
                                 {entry.textarea.length}
