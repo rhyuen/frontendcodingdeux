@@ -12,33 +12,62 @@
                 font-family: "Helvetica"; 
                 font-size: 12px;
             }
-            body{width: 100%; height: 100%; background: pink; margin: 0;}
+            body{
+                width: 100%;                 
+                background: lightgray; 
+                margin: 0;
+            }
             #app{
-                display: flex; 
-                background: paleturquoise; 
+                display: flex;                 
                 border: 0; 
                 height: 100%; 
                 width: 100%; 
                 justify-content:center;
             }            
 
+            .entrylist{
+                width: 590px;
+                background: #D88585;
+            }
 
             .entry{
-                display: flex;
-                flex-grow: 1;
-                justify-content: space-between;
+                display: flex;                                
+                margin-bottom: 1rem;
             }
             .entry__main{                
-                padding-left: 60px;
-                width: 75%;
+                padding-left: 5rem;
+                width: 100%;
             }
+            .entry__main__title{
+                background: lavender;
+                padding: 1rem 0rem;
+            }
+
             .entry__main__content{
                 background: white;
-                padding: 20px 0px;
+                padding: 2rem 0px;
             }
+
+            .entry__main__buttons{
+                background: #B3B3EC;
+                width: 100%;
+                height: 3rem;
+            }
+            .entry__main__buttons__item{
+                width: 2rem;                                
+                background: gray;
+            }
+            .entry__main__buttons__item__button{
+                background: charcoal;
+                width: 2rem;
+                margin-right: 1rem;
+                padding-bottom: 1rem;
+                border: none;
+            }
+
             .entry__main__tags{
-                background: cornflowerblue;
-                line-height: 40px;
+                padding: 1rem 0rem;
+                background: #BCCEEE;                
             }
             .entry__meta{
                 background: tan;
@@ -52,14 +81,17 @@
             }
             .container__form{
                 padding: 60px 60px;
-                background: grey;
+                background: white;
             }
             .container__form__title{
                 width: 100%;
-                background: red;
+                background: pink;
+                margin-bottom: 1rem;
             }
             .container__form__title__input{
-                width: 100%;
+                font-size: 16px;
+                line-height: 20px;
+                width: 80%;
             }
             .container__form__textarea{
                 width: 100%;                

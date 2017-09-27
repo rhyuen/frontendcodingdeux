@@ -24,7 +24,7 @@ class EntryForm extends Component{
                         <textarea value = {this.props.formContent} 
                         onChange = {this.handleTextareaChange}                        
                         rows = "3"
-                        cols = "60"/>
+                        cols = "65"/>
                     </div>
                     <div className = "container__form__bottom">
                         <span>{150 - this.props.formContent.length} characters left</span>
