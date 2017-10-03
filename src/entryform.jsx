@@ -23,12 +23,13 @@ class EntryForm extends Component{
                     <div className = "container__form__textarea">
                         <textarea value = {this.props.formContent} 
                         onChange = {this.handleTextareaChange}                        
-                        rows = "3"
-                        cols = "65"/>
+                        />
                     </div>
                     <div className = "container__form__bottom">
-                        <span>{150 - this.props.formContent.length} characters left</span>
-                        <span><input type = "submit" value = "Submit"/></span>
+                        <span className = "container__form__bottom__char">
+                            {150 - this.props.formContent.length} characters left
+                        </span>                        
+                        <input className = "container__form__bottom__submit" type = "submit" value = "Submit"/>
                     </div>                
                 </form>
             </div>

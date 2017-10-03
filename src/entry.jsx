@@ -19,7 +19,7 @@ export default (props) => (
 const EntryTitle = (props) => (
     <div className = "entry__main__title">
         <label>
-            <input type = "checkbox" className = "entry__main__title__checkbox"/>
+            <input type = "button" className = "entry__main__title__checkbox"/>
                 <strong>{props.title}</strong>
         </label>
     </div>

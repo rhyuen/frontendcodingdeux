@@ -19,6 +19,9 @@ module.exports = {
             loader: "babel-loader"
         }]
     },
+    devServer: {
+        historyApiFallback: true
+    },
     plugins: [
         new HTMLWebpackPlugin({
             template: path.join(__dirname, "src/templates/index.html"),

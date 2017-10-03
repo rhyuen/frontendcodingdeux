@@ -1,7 +1,6 @@
 import React, {Component} from "react";
 import EntryList from "./entrylist.jsx";
 import EntryForm from "./entryform.jsx";
-import Nav from "./nav.jsx";
 
 class App extends Component{
     state = {
@@ -32,9 +31,8 @@ class App extends Component{
     handleChange = (event) => {        
         this.setState((prevState, props) => {
             return {
-                title: event,
-                textarea: prevState.textarea,
-                events: prevState.events
+                ...prevState,
+                title: event                
             };
         });
     }
@@ -42,24 +40,15 @@ class App extends Component{
     handleTextareaChange = (event) => {
         this.setState((prevState, props) => {
             return {
-                title: prevState.title,
-                events: prevState.events,
+                ...prevState,
                 textarea: event                
             };
         });
     }
         
-    render(){
-        const style = {
-            background: "orange",            
-            alignItems: "center",
-            flexDirection: "column",
-            width: "100%",
-            display: "flex"
-        };
-
+    render(){        
         return (
-            <div style = {style}>                                                
+            <div className = "main">                                                
                 <div>     
                     <EntryForm formValue = {this.state.title} 
                         formSubmit = {this.handleSubmit} 

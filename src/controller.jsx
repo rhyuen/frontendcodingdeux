@@ -5,13 +5,9 @@ import Login from "./login.jsx";
 import Footer from "./footer.jsx";
 
 
-const style = {
-    background: "white"
-};
-
 const Controller = () => (
     <Router>
-        <div style = {style}>
+        <div>
             <div className = "nav">                
                 <span><Link to = "/">Home</Link></span>
                 <span><Link to = "/login">Login</Link></span>                                
