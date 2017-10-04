@@ -48,16 +48,25 @@ class App extends Component{
         
     render(){        
         return (
-            <div className = "main">                                                
-                <div>     
-                    <EntryForm formValue = {this.state.title} 
-                        formSubmit = {this.handleSubmit} 
-                        formChange = {this.handleChange}
-                        formContent = {this.state.textarea}
-                        textareaChange = {this.handleTextareaChange}/>
-                    <EntryList entries={this.state.events}/>                
+            <div className = "main">   
+                <div className = "main__side">
+                    <div className = "main__side__container">Side Comp</div>                    
+                    <div className = "main__side__container">Side Comp</div>
+                </div>                                             
+                <div className = "main__center">
+                    <div className = "main__center__entry">
+                        <EntryForm formValue = {this.state.title} 
+                            formSubmit = {this.handleSubmit} 
+                            formChange = {this.handleChange}
+                            formContent = {this.state.textarea}
+                            textareaChange = {this.handleTextareaChange}/>
+                        <EntryList entries={this.state.events}/>                     
+                    </div>
                 </div>
-                <div></div>
+                <div className = "main__side">
+                    <div className = "main__side__container">Side Comp</div>
+                    <div className = "main__side__container">Side Comp</div>
+                </div>
             </div>
         );
     }

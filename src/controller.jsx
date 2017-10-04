@@ -7,14 +7,18 @@ import Footer from "./footer.jsx";
 
 const Controller = () => (
     <Router>
-        <div>
-            <div className = "nav">                
-                <span><Link to = "/">Home</Link></span>
-                <span><Link to = "/login">Login</Link></span>                                
-            </div>            
-            <Route exact path = "/" component = {App}/>
-            <Route path = "/login" component = {Login}/>
-            <Footer/>
+        <div className = "root">
+            <div className = "nav">   
+                <div className = "nav__container">
+                    <span><Link to = "/">Home</Link></span>
+                    <span><Link to = "/login">Login</Link></span>
+                </div>
+            </div>         
+            <div className = "routed">
+                <Route exact path = "/" component = {App}/>
+                <Route path = "/login" component = {Login}/>
+                <Footer/>
+            </div>
         </div>
     </Router>    
 )

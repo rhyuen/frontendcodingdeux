@@ -12,8 +12,7 @@
                 font-size: 12px;
             }
             body{
-                width: 100%;                 
-                background: lightgray; 
+                width: 100%;                                 
                 margin: 0;
             }
             #app{
@@ -23,18 +22,83 @@
                 width: 100%; 
                 justify-content:center;
             }            
-
-            .main{
-                background: orange;
-                align-items: center;
-                flex-direction: column;
+            .root{
                 width: 100%;
                 display: flex;
+                flex-direction: column;                
+            }
+
+            .nav{
+                background: #9020EC;
+                padding: 2rem 0rem;
+                box-sizing: border-box;
+                height: 5rem;               
+                width: 100%;
+                display: flex;
+                justify-content: center;                
+            }
+            .nav__container{
+                width: 1090px;                
+                background: #9020EC;
+                height: 3rem;
+                box-sizing: border-box;
+                border-bottom: 4px solid red;
+                
+            }
+            .nav__container span{
+                margin-right: 1rem;
+                text-transform: uppercase;                                
+            }
+            .nav__container span a{
+                font-size: 16px;
+                color: white;   
+                font-weight: 600;             
+                text-decoration: none;
+            }            
+            .nav__container span a:hover{
+                color: pink;
+                text-decoration: underline;
+            }
+
+            .routed{
+                display: flex;
+                align-self: center;
+                flex-direction: column;
+                width: 1090px;
+            }
+
+            .main{
+                width: 100%;
+                background: purple;                
+                display: flex;              
+            }
+            .main__side{
+                width: 100%;
+                background: white;
+                display: flex;
+                flex-direction: column;
+            }
+            .main__side__container{
+                background: white;
+                box-sizing: border-box;
+                margin-top: 2rem;
+                height: 30rem;
+                margin-right: 1rem;
+                box-shadow: 2px 2px 2px rgba(0,0,0,0.1);
+                
+            }
+            .main__center{
+                background: lavender;    
+                display: flex;                
+            }
+            .main__center__entry{
+                display: flex;                
+                flex-direction: column;
             }
 
             .entrylist{
                 width: 590px;
-                background: #D88585;
+                background: #D88585;                
             }
 
             .entry{
@@ -103,7 +167,8 @@
             .container{
                 display: flex;
                 flex-direction: column;
-                width: 590px;                
+                width: 590px;               
+                align-self: center; 
             }
             .container__form{
                 padding: 5rem 5rem;
@@ -162,29 +227,13 @@
                 outline: none;
             }
 
-            .nav{
-                background: lavender;
-                padding: 2rem 0rem;                
-                width: 800px;
-            }
-            .nav span{
-                margin-right: 1rem;
-                text-transform: uppercase;
-                
-            }
-            .nav span a{
-                font-size: 16px;                
-                text-decoration: none;
-            }            
-            .nav span a:hover{
-                color: purple;
-                text-decoration: underline;
-            }
+         
 
             .login{
                 background: pink;
                 height: 30rem;
-                padding: 5rem;
+                padding: 5rem;        
+                box-sizing: border-box;                
             }
             .login__header{
 
