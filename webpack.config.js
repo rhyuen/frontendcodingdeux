@@ -17,6 +17,9 @@ module.exports = {
             test: /\.jsx$/,
             exclude: /node_modules/,
             loader: "babel-loader"
+        }, {
+            test: /\.(png|jpg|gif)$/,
+            loader: "file-loader"
         }]
     },
     devServer: {

@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import {BrowserRouter as Router, Route, Link} from "react-router-dom";
 import App from "./app.jsx";
 import Login from "./login.jsx";
+import Masonry from "./masonry.jsx";
 import Footer from "./footer.jsx";
 
 
@@ -12,11 +13,13 @@ const Controller = () => (
                 <div className = "nav__container">
                     <span><Link to = "/">Home</Link></span>
                     <span><Link to = "/login">Login</Link></span>
+                    <span><Link to = "/masonry">Masonry</Link></span>
                 </div>
             </div>         
             <div className = "routed">
                 <Route exact path = "/" component = {App}/>
                 <Route path = "/login" component = {Login}/>
+                <Route path = "/masonry" component = {Masonry}/>
                 <Footer/>
             </div>
         </div>
