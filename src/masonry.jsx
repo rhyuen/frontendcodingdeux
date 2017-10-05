@@ -1,23 +1,31 @@
 import React, {Component} from "react";
 import img from "./images/spiderman.jpg";
 
-const MsnItem = () => (
-    <div className ="msn__col__item">        
-        <img src = {img}/>
-    </div>
+const MsnItem = ({imgReference}) => (
+    <div className ="msn__row__item">        
+        <img src = {imgReference}/>
+        <div className = "msn__row__item__social">
+            <div clasName = "msn__row__item__social__icon">A</div>
+            <div clasName = "msn__row__item__social__icon">B</div>
+            <div clasName = "msn__row__item__social__icon">B</div>
+        </div>            
+    </div>    
 );
 
-// const images = require.context("./images", false, /\.(png|jpg)$/);
-// const handled = images.keys().map(images);
+const MsnRow = () => {
+    const images = require.context("./images", false, /\.(png|jpg)$/);
+    const handled = images.keys().map(images);
 
-const MsnCol = () => (
-    <div className = "msn__col">        
-        <MsnItem/>
-        <MsnItem/>
-        <MsnItem/>
-        <MsnItem/>
-    </div>
-);
+    const list = handled.map((item, index) => {
+        return <MsnItem imgReference = {item} key = {index}/>
+    });
+
+    return (
+        <div className = "msn__row">
+            {list}
+        </div>
+    );
+};
 class Masonry extends Component{
     state = {
 
@@ -25,11 +33,7 @@ class Masonry extends Component{
     render(){
         return (
             <div className = "msn">
-                <MsnCol/>
-                <MsnCol/>
-                <MsnCol/>
-                <MsnCol/>
-                <MsnCol/>
+                <MsnRow/>
             </div>
         );
     }
