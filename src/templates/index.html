@@ -302,12 +302,31 @@
                 width: 100%;                
                 object-fit: cover;
             }
-            .msn__row__item__text{
-                position: absolute;
-                background: rgba(0,0,0,0.5);
+            
+            .msn__row__item__social{
+                display: none;
+                position: absolute;                
                 color: black;                
                 z-index: 2;
-                right: 0;                
+                right: 0.25rem;                
+                top: 0.25rem;
+                box-sizing: border-box;
+                padding: 0.5rem;                
+            }
+            .msn__row__item__social__icon{
+                padding:0.5rem;
+                margin-bottom: 0.5rem;
+                background: #343434;
+                color: lavender;
+                font-weight: 800;
+                border: 1px solid lavender;
+                border-radius: 5px;                
+            }
+            .msn__row__item:hover .msn__row__item__social{
+                display: block;
+            }
+            .msn__row__item__social__icon:hover{
+                color: #4BE643;
             }
 
             
