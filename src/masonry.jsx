@@ -43,12 +43,16 @@ class Masonry extends Component{
         });
     }
 
-    handleVisibilityChange = () => {
-
+    handleVisibilityChange = (evt) => {
+        const id = evt.target.key;
+        this.setState((prevState) => {
+            let nextIteration = this.state.pictures.map((img) => {                
+            });
+        });
     }
 
     handleUpvote = () => {
-        
+
     }
     render(){
         return (

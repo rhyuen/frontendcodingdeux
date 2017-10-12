@@ -1,12 +1,15 @@
 import React, {Component} from "react";
 import Entry from "./entry.jsx";
 
-export default ({entries}) => (
-    <div className = "entrylist">
-        <h2>{entries.length} Items Remaining</h2>
+export default ({entries, onTitleClick}) => (
+    <div className = "entrylist">        
         <div>
             {
-                entries.map((entry, index) => <Entry entry = {entry} index = {index}/>)                
+                entries.map((entry) => {
+                    if(entry.visible === false){
+                        return <Entry entry = {entry} key = {entry.id} onTitleClick = {onTitleClick}/>;
+                    }
+                })                
             }
         </div>      
     </div>

@@ -1,26 +1,25 @@
 import React, {Component} from "react";
 
-export default (props) => (
-    <div name = {props.entry.title} key = {props.index} className = "entry">
+export default ({entry, onTitleClick}) => (
+    <div name = {entry.title} className = "entry">
         <span className = "entry__main">
-            <EntryTitle title = {props.entry.title}/>
-            <div className = "entry__main__content">{props.entry.textarea}</div>
+            <EntryTitle title = {entry.title} onTitleClick = {onTitleClick} id = {entry.id}/>
+            <div className = "entry__main__content">{entry.textarea}</div>
             <div className = "entry__main__tags">
-                {props.entry.textarea.split(" ").filter((item) => item.length > 11)}
+                <div className = "entry__main__tags__item">
+                    {entry.textarea.split(" ").filter((item) => item.length > 11)}
+                </div>
             </div>
            <EntryButtons/>
-        </span>
-        <span className = "entry__meta">
-            {props.entry.textarea.length}
-        </span>
+        </span>        
     </div>
 );
 
-const EntryTitle = (props) => (
-    <div className = "entry__main__title">
+const EntryTitle = ({title, onTitleClick, id}) => (
+    <div className = "entry__main__title" id = {id} onClick = {onTitleClick.bind(this, id)}>
         <label>
             <input type = "button" className = "entry__main__title__checkbox"/>
-                <strong>{props.title}</strong>
+                <strong>{title}</strong>
         </label>
     </div>
 );
