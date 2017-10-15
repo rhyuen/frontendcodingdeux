@@ -1,17 +1,29 @@
 import React, {Component} from "react";
 
-export default ({entry, onTitleClick}) => (
-    <div name = {entry.title} className = "entry">
-        <span className = "entry__main">
-            <EntryTitle title = {entry.title} onTitleClick = {onTitleClick} id = {entry.id}/>
-            <div className = "entry__main__content">{entry.textarea}</div>
-            <div className = "entry__main__tags">
-                <div className = "entry__main__tags__item">
-                    {entry.textarea.split(" ").filter((item) => item.length > 11)}
-                </div>
-            </div>
-           <EntryButtons/>
-        </span>        
+export default ({entry, onTitleClick}) => {
+    const showContent = entry.visible ? <EntryBody entry = {entry}/> : <div>Empty</div>;
+
+    return (
+        <div name = {entry.title} className = "entry">
+            <span className = "entry__main">
+                <EntryTitle title = {entry.title} onTitleClick = {onTitleClick} id = {entry.id}/>
+                {showContent}
+                <EntryButtons/>
+            </span>        
+        </div>
+    );
+};
+
+const EntryBody = ({entry}) => (
+    <div>
+        <div className = "entry__main__content">{entry.textarea}</div>
+        <div className = "entry__main__tags">                
+            {
+                // entry.textarea.split(" ")
+                //     .filter(item => item.length > 5)
+                //     .map(tag => <span className = "entry__main__tags__item">{tag}</span>)
+            }                
+        </div>
     </div>
 );
 

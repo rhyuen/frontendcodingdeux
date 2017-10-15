@@ -11,27 +11,31 @@ class App extends Component {
         textarea: "",
         events: [{
                 id: uuid.v4(),
-                title: "First One",
+                title: "First One is the HAProxy",
                 textarea: "To work with Kubernetes, you use Kubernetes ",
-                visible: false
+                timeStamp: new Date().toLocaleString(),
+                visible: true
             },
             {
                 id: uuid.v4(),
-                title: "SEcond",
+                title: "SEcond is the Namtab",
                 textarea: "ernetes contains a number of abstractions that ",
-                visible: false
+                timeStamp: new Date().toLocaleString(),
+                visible: true
             },
             {
                 id: uuid.v4(),
-                title: "third 333",
+                title: "third 333 is the Swarm that approaches.",
                 textarea: "he Kubernetes master is responsible for ",
+                timeStamp: new Date().toLocaleString(),
                 visible: false
             },
             {
                 id: uuid.v4(),
-                title: "Four444",
+                title: "Four444 is the number of OSes that exist.",
                 textarea: "des in a cluster are the machines (VMs",
-                visible: false
+                timeStamp: new Date().toLocaleString(),
+                visible: true
             }
         ]
     }
@@ -43,7 +47,8 @@ class App extends Component {
             title: "",
             textarea: "",
             events: prevState.events.concat({
-                done: false,
+                id: uuid.v4(),
+                visible: true,
                 title: this.state.title,
                 textarea: this.state.textarea
             })
@@ -71,19 +76,28 @@ class App extends Component {
         });
     }
 
+    //the Stete update logic is incorrect
     handleEntryTitleClick = (id, e) => {        
         console.log(e);
+        e.stopPropagation();
+    
         console.log("HandleEntryTitleClick %s", id);
         console.log("ID %s", e.target.id);
         this.setState(prevState => {
-            const latest = Object.assign({}, prevState.events[id], {visible: !prevState.visible});
+            const elementToUpdate = prevState.events.filter(evt => evt.id === id)[0];
+            const beforeLatest = prevState.events.slice(0, id);
+            const latest = Object.assign({}, elementToUpdate, {visible: !elementToUpdate.visible});
+            const afterLatest = prevState.events.splice(id+1);            
+            const nextState = beforeLatest.concat(latest).concat(afterLatest);
             console.log(latest);
             console.log("in scope");
             return {
                 ...prevState,
-                events: prevState.events.filter(evt => evt.id !== id).concat(latest)
+                events: nextState
             };
         });
+
+      
     }
 
     render() {
