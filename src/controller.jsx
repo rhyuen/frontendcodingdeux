@@ -22,8 +22,7 @@ const Controller = () => (
                 <Route exact path = "/" component = {App}/>
                 <Route path = "/login" component = {Login}/>
                 <Route path = "/masonry" component = {Masonry}/>
-                <Route path = "/notes" component = {NotesApp}/>
-                <Footer/>
+                <Route path = "/notes" component = {NotesApp}/>                
             </div>
         </div>
     </Router>    

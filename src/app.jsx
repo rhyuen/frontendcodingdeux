@@ -78,21 +78,25 @@ class App extends Component {
 
     //the Stete update logic is incorrect
     handleEntryTitleClick = (id, e) => {        
-        console.log(e);
         e.stopPropagation();
-    
-        console.log("HandleEntryTitleClick %s", id);
-        console.log("ID %s", e.target.id);
+            
         this.setState(prevState => {
             const elementToUpdate = prevState.events.filter(evt => evt.id === id)[0];
-            const beforeLatest = prevState.events.slice(0, id);
+            let itemIndex = 0;
+            for(var i = 0; i < prevState.events.length; i++){
+                if(prevState.events[i].id === id){
+                    itemIndex = i;
+                    break;
+                }
+            }            
+            const beforeLatest = prevState.events.slice(0, itemIndex);
             const latest = Object.assign({}, elementToUpdate, {visible: !elementToUpdate.visible});
-            const afterLatest = prevState.events.splice(id+1);            
+            const afterLatest = prevState.events.splice(itemIndex + 1);            
             const nextState = beforeLatest.concat(latest).concat(afterLatest);
-            console.log(latest);
-            console.log("in scope");
+            
             return {
-                ...prevState,
+                textarea: prevState.textarea,
+                title: prevState.title,
                 events: nextState
             };
         });
