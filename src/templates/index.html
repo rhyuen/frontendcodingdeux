@@ -42,7 +42,7 @@
                 background: #9020EC;
                 height: 3rem;
                 box-sizing: border-box;
-                border-bottom: 4px solid red;
+                border-bottom: 4px solid lavender;
                 
             }
             .nav__container span{
@@ -186,7 +186,7 @@
             }
             .container__form__title__input:focus{                
                 outline: none;
-                border-bottom: 3px solid purple;                
+                border-bottom: 3px solid #9013fe;                
             }
             
             textarea{
@@ -280,10 +280,64 @@
             .msn{
                 display: flex;
                 width: 100%;
+                /* width: 960px; */
                 height: 125rem;
                 background: inherit;
-                flex-direction: column;                
+                flex-direction: column;   
+                position: relative;             
             }
+            .msn__viewer{                
+                background: rgba(0,0,0,0.8);
+                width: 100%;
+                height: 100%;
+                position: fixed;
+                top: 0;
+                left: 0;
+                z-index: 5;       
+                display: flex;
+                justify-content: center;
+                align-items: center;                       
+                
+            }
+            .msn__viewer__content{
+                width: 80rem;
+                height: 45rem;
+                background: white;                                
+                display: flex;                
+            }
+            
+            .msn__viewer__content__picture{
+                width: 65%;
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background: black;
+            }
+            .msn__viewer__content__picture img{
+                max-width: 100%;
+                max-height: 100%;
+            }
+
+            .msn__viewer__content__text{
+                background: white;
+                width: 35%;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+            }
+            .msn__footer__content__user{
+
+            }
+            .msn__footer__content__comments{
+                
+            }
+            .msn__footer__content__summary{
+                
+            }
+
+
+
             .msn__footer{
                 display: flex;
                 background: white;

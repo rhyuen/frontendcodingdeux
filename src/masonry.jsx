@@ -2,9 +2,9 @@ import React, {Component} from "react";
 import uuid from "uuid";
 
 
-const MsnItem = ({imgReference, onImageClose, id, likes, onImageUpvote, onImageDownvote}) => (
+const MsnItem = ({imgReference, onImageClose, id, likes, onImageUpvote, onImageDownvote, onImageClick}) => (
     <div className ="msn__row__item">        
-        <img src = {imgReference}/>
+        <img src = {imgReference} onClick = {onImageClick.bind(this)}/>
         <div className = "msn__row__item__social">
             <div className = "msn__row__item__social__icon" onClick = {onImageClose.bind(this, id)}>X</div>
             <div className = "msn__row__item__social__icon" onClick = {onImageUpvote.bind(this, id)}>^</div>
@@ -14,7 +14,7 @@ const MsnItem = ({imgReference, onImageClose, id, likes, onImageUpvote, onImageD
     </div>    
 );
 
-const MsnRow = ({gallery, onImageClose, onImageUpvote, onImageDownvote}) => (
+const MsnRow = ({gallery, onImageClose, onImageUpvote, onImageDownvote, onImageClick}) => (
     <div className = "msn__row">
         {
             gallery.map((item) => {
@@ -25,7 +25,8 @@ const MsnRow = ({gallery, onImageClose, onImageUpvote, onImageDownvote}) => (
                         likes = {item.likes} 
                         onImageClose = {onImageClose}
                         onImageUpvote = {onImageUpvote}
-                        onImageDownvote = {onImageDownvote}/>;
+                        onImageDownvote = {onImageDownvote}
+                        onImageClick = {onImageClick}/>;
                 }
             })            
         }
@@ -34,7 +35,9 @@ const MsnRow = ({gallery, onImageClose, onImageUpvote, onImageDownvote}) => (
 );
 class Masonry extends Component{
     state = {
-        pictures: []
+        pictures: [],
+        isViewerVisible: false,
+        viewerImage: ""
     }
 
     componentDidMount= () => {
@@ -123,29 +126,59 @@ class Masonry extends Component{
             };
         });
     }
+
+    handleImageClick = (e) => {        
+        const clickedImage = e.target.src.split("/").pop();        
+        this.setState(prevState => {
+            return {
+                ...prevState,
+                isViewerVisible: true,
+                viewerImage: clickedImage,
+            };
+        });
+    }
+
     render(){
         return (
-            <div className = "msn">                
+            <div className = "msn">
+                <MsnViewer isVisible = {this.state.isViewerVisible} 
+                    imageLink = {this.state.viewerImage}/>
                 <MsnRow gallery = {this.state.pictures} 
                     onImageClose = {this.handleVisibilityChange}
                     onImageUpvote = {this.handleUpvote}
-                    onImageDownvote = {this.handleDownVote}/>                
+                    onImageDownvote = {this.handleDownVote}
+                    onImageClick = {this.handleImageClick}/>
             </div>            
         );
     }
 }
 
-const MsnViewer = () => (
-    <div>
-        Viewer
-    </div>
-);
+const MsnViewer = ({isVisible, imageLink}) => {
+    if(isVisible){
+        return (
+            <div className = "msn__viewer">        
+                <div className = "msn__viewer__content">            
+                    <div className ="msn__viewer__content__picture">
+                        <img src = {imageLink}/>
+                    </div>
+                    <div className = "msn__viewer__content__text">
+                        <div className ="msn__viwer__content__text__user">USER</div>
+                        <div className ="msn__viwer__content__text__comments">COMMENTS</div>
+                        <div className ="msn__viwer__content__text__summary">SUMMMARY</div>
+                    </div>
+                </div>
+            </div>
+        );
+    }else{
+        return null;
+    }
+};
 
 const MsnFooter = () => (
-    <div className ="msn__footer">  
+    <div className = "msn__footer">
         <div className = "msn__footer__content">
             <span>That's all for now.</span>
-        </div>        
+        </div>
     </div>
 );
 
