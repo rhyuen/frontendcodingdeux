@@ -138,11 +138,22 @@ class Masonry extends Component{
         });
     }
 
+    handleViewerClose = () => {
+        this.setState(prevState => {
+            return {
+                ...prevState,
+                isViewerVisible: false,
+                viewerImage: ""
+            };
+        });
+    }
+
     render(){
         return (
             <div className = "msn">
                 <MsnViewer isVisible = {this.state.isViewerVisible} 
-                    imageLink = {this.state.viewerImage}/>
+                    imageLink = {this.state.viewerImage}
+                    onViewerClose = {this.handleViewerClose}/>
                 <MsnRow gallery = {this.state.pictures} 
                     onImageClose = {this.handleVisibilityChange}
                     onImageUpvote = {this.handleUpvote}
@@ -153,7 +164,7 @@ class Masonry extends Component{
     }
 }
 
-const MsnViewer = ({isVisible, imageLink}) => {
+const MsnViewer = ({isVisible, imageLink, onViewerClose}) => {
     if(isVisible){
         return (
             <div className = "msn__viewer">        
@@ -165,6 +176,9 @@ const MsnViewer = ({isVisible, imageLink}) => {
                         <div className ="msn__viwer__content__text__user">USER</div>
                         <div className ="msn__viwer__content__text__comments">COMMENTS</div>
                         <div className ="msn__viwer__content__text__summary">SUMMMARY</div>
+                    </div>
+                    <div className = "msn__viewer__content__closebutton"
+                        onClick = {onViewerClose.bind(this)}>
                     </div>
                 </div>
             </div>
