@@ -48,7 +48,23 @@ class Masonry extends Component{
                 imageLink: currImage,
                 visible: true,
                 likes: 0,
-                id: uuid.v4()                
+                id: uuid.v4(),
+                comments: [{
+                    name: `user ${Math.floor(Math.random()*100)}`,
+                    text: "Test of varying length goes ehre."
+                }, {
+                    name: `user ${Math.floor(Math.random()*100)}`,
+                    text: "Kubernetes solves lots of problems.  It perplexes me as to why the 8 in the abbreviation.  I however, did find out that it denotes eight characters between the k and the s.  This is for super long lenght of text."
+                }, {
+                    name: `user ${Math.floor(Math.random()*100)}`,
+                    text: "Test of varying length goes ehre. For Y-Height"
+                }, {
+                    name: `user ${Math.floor(Math.random()*100)}`,
+                    text: "Test of varying length goes ehre I mean y-axis overflow."
+                }, {
+                    name: `user ${Math.floor(Math.random()*100)}`,
+                    text: "Test of varying length goes ehre.  Test by iteration and fail to see what happens."
+                }]
             };
         });
 
@@ -138,14 +154,14 @@ class Masonry extends Component{
         });
     }
 
-    handleViewerClose = () => {
+    handleViewerClose = () => {               
         this.setState(prevState => {
             return {
                 ...prevState,
                 isViewerVisible: false,
                 viewerImage: ""
             };
-        });
+        });        
     }
 
     render(){
@@ -173,9 +189,19 @@ const MsnViewer = ({isVisible, imageLink, onViewerClose}) => {
                         <img src = {imageLink}/>
                     </div>
                     <div className = "msn__viewer__content__text">
-                        <div className ="msn__viwer__content__text__user">USER</div>
-                        <div className ="msn__viwer__content__text__comments">COMMENTS</div>
-                        <div className ="msn__viwer__content__text__summary">SUMMMARY</div>
+                        <div className ="msn__viewer__content__text__user">
+                            <div className = "msn__viewer__content__text__user__icon"></div>
+                            <div className = "msn__viewer__content__text__user__name">aNameIsHere</div>
+                        </div>
+                        <div className ="msn__viewer__content__text__comments">COMMENTS</div>
+                        <div className ="msn__viewer__content__text__summary">
+                            <div className = "msn__viewer__content__text__summary__buttons">
+                                <div className = "msn__viewer__content__text__summary__buttons__item"></div>
+                                <div className = "msn__viewer__content__text__summary__buttons__item"></div>
+                            </div>
+                            <div className = "msn__viewer__content__text__summary__likes">{Math.floor(Math.random() * 100)} Likes</div>
+                            <div className = "msn__viewer__content__text__summary__date">{new Date().toLocaleString()}</div>
+                        </div>
                     </div>
                     <div className = "msn__viewer__content__closebutton"
                         onClick = {onViewerClose.bind(this)}>

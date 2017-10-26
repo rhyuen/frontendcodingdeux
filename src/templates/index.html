@@ -326,6 +326,8 @@
                 height: 100%;
                 display: flex;
                 flex-direction: column;                
+                box-sizing: border-box;
+                padding: 2rem;
             }
             .msn__viewer__content__closebutton{
                 background: red;
@@ -337,14 +339,57 @@
                 border-radius: 50%;
             }
 
-            .msn__footer__content__user{
+            .msn__viewer__content__text__user{
+                height: 10rem;
+                border-bottom: 1px solid rgba(0,0,0,0.1);                
+                display: flex;
+            }
+
+            .msn__viewer__content__text__user__icon{
+                width: 2rem;
+                height: 2rem;
+                background: lightblue;
+                margin-right: 1rem;       
+                border-radius: 50%;         
+            }
+            .msn__viewer__content__text__user__name{
+                font-weight: bold;
+                line-height: 2rem;                
+            }
+
+
+            .msn__viewer__content__text__comments{
+                height: 75rem;
+                border-bottom: 1px solid rgba(0,0,0,0.1);
+                box-sizing: border-box;
+                margin: 1rem 0rem;
+            }
+            .msn__viewer__content__text__summary{
+                height: 15rem;
+            }
+            .msn__viewer__content__text__summary__buttons{
+                margin-top: 1rem;
+                margin-bottom: 1rem;
+                margin-right: 1rem;
+                display: flex;
+            }
+            .msn__viewer__content__text__summary__buttons__item{
+                width: 2rem;
+                height: 2rem;     
+                border-radius: 50%;           
+                margin-right: 1rem; 
+                background: lightblue;
+            }
+            .msn__viewer__content__text__summary__likes{
+                font-weight: bold;
+                font-size: 15px;
+                margin-bottom: 1rem;
 
             }
-            .msn__footer__content__comments{
-                
-            }
-            .msn__footer__content__summary{
-                
+            .msn__viewer__content__text__summary__date{
+                text-transform: uppercase;
+                margin-bottom: 1rem;
+                color: rgba(0,0,0,0.5);
             }
 
 
@@ -419,7 +464,7 @@
             }
             .msn__row__item__summary{
                 display: none;
-                background: rgba(0,0,0,0.5);
+                background: rgba(0,0,0,0.7);
                 position: absolute;
                 bottom: 0;
                 width: 100%;
