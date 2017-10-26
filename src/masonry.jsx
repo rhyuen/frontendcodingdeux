@@ -26,7 +26,7 @@ const MsnRow = ({gallery, onImageClose, onImageUpvote, onImageDownvote, onImageC
                         onImageClose = {onImageClose}
                         onImageUpvote = {onImageUpvote}
                         onImageDownvote = {onImageDownvote}
-                        onImageClick = {onImageClick}/>;
+                        onImageClick = {onImageClick.bind(this, item.id)}/>;
                 }
             })            
         }
@@ -50,18 +50,31 @@ class Masonry extends Component{
                 likes: 0,
                 id: uuid.v4(),
                 comments: [{
+                    commentid: uuid.v4(),
                     name: `user ${Math.floor(Math.random()*100)}`,
                     text: "Test of varying length goes ehre."
                 }, {
+                    commentid: uuid.v4(),
                     name: `user ${Math.floor(Math.random()*100)}`,
                     text: "Kubernetes solves lots of problems.  It perplexes me as to why the 8 in the abbreviation.  I however, did find out that it denotes eight characters between the k and the s.  This is for super long lenght of text."
                 }, {
+                    commentid: uuid.v4(),
                     name: `user ${Math.floor(Math.random()*100)}`,
                     text: "Test of varying length goes ehre. For Y-Height"
                 }, {
+                    commentid: uuid.v4(),
                     name: `user ${Math.floor(Math.random()*100)}`,
                     text: "Test of varying length goes ehre I mean y-axis overflow."
                 }, {
+                    commentid: uuid.v4(),
+                    name: `user ${Math.floor(Math.random()*100)}`,
+                    text: "Test of varying length goes ehre I mean y-axis overflow."
+                }, {
+                    commentid: uuid.v4(),
+                    name: `user ${Math.floor(Math.random()*100)}`,
+                    text: "Test of varying length goes ehre I mean y-axis overflow."
+                }, {
+                    commentid: uuid.v4(),
                     name: `user ${Math.floor(Math.random()*100)}`,
                     text: "Test of varying length goes ehre.  Test by iteration and fail to see what happens."
                 }]
@@ -143,13 +156,17 @@ class Masonry extends Component{
         });
     }
 
-    handleImageClick = (e) => {        
-        const clickedImage = e.target.src.split("/").pop();        
+    handleImageClick = (id, e) => {        
+        const clickedImage = e.target.src.split("/").pop();         
+        const imageObj = this.state.pictures.filter(pic => {
+            return pic.id === id;
+        });
         this.setState(prevState => {
             return {
                 ...prevState,
                 isViewerVisible: true,
-                viewerImage: clickedImage,
+                // viewerImage: clickedImage
+                viewerImage: imageObj[0]
             };
         });
     }
@@ -168,7 +185,8 @@ class Masonry extends Component{
         return (
             <div className = "msn">
                 <MsnViewer isVisible = {this.state.isViewerVisible} 
-                    imageLink = {this.state.viewerImage}
+                    imageLink = {this.state.viewerImage.imageLink}
+                    comments = {this.state.viewerImage.comments}
                     onViewerClose = {this.handleViewerClose}/>
                 <MsnRow gallery = {this.state.pictures} 
                     onImageClose = {this.handleVisibilityChange}
@@ -180,7 +198,33 @@ class Masonry extends Component{
     }
 }
 
-const MsnViewer = ({isVisible, imageLink, onViewerClose}) => {
+const MsnCommentsList = ({comments}) => (
+    <div className ="msn__viewer__content__text__comments">
+        {
+            comments.map(comment => {
+                return (
+                    <div className = "msn__viewer__content__text__comments__item" key = {comment.commentid}>
+                        <span className = "msn__viewer__content__text__comments__item__name">{comment.name}: </span>
+                        <span className = "msn__viewer__content__text__comments__item__text">{comment.text}</span>
+                    </div>
+                );
+            })
+        }
+    </div>
+);
+
+const MsnViewerSummary = () => (
+    <div className ="msn__viewer__content__text__summary">
+        <div className = "msn__viewer__content__text__summary__buttons">
+            <div className = "msn__viewer__content__text__summary__buttons__item"></div>
+            <div className = "msn__viewer__content__text__summary__buttons__item"></div>
+        </div>
+        <div className = "msn__viewer__content__text__summary__likes">{Math.floor(Math.random() * 100)} Likes</div>
+        <div className = "msn__viewer__content__text__summary__date">{new Date().toLocaleString()}</div>
+    </div>
+);
+
+const MsnViewer = ({isVisible, imageLink, onViewerClose, comments}) => {
     if(isVisible){
         return (
             <div className = "msn__viewer">        
@@ -193,15 +237,8 @@ const MsnViewer = ({isVisible, imageLink, onViewerClose}) => {
                             <div className = "msn__viewer__content__text__user__icon"></div>
                             <div className = "msn__viewer__content__text__user__name">aNameIsHere</div>
                         </div>
-                        <div className ="msn__viewer__content__text__comments">COMMENTS</div>
-                        <div className ="msn__viewer__content__text__summary">
-                            <div className = "msn__viewer__content__text__summary__buttons">
-                                <div className = "msn__viewer__content__text__summary__buttons__item"></div>
-                                <div className = "msn__viewer__content__text__summary__buttons__item"></div>
-                            </div>
-                            <div className = "msn__viewer__content__text__summary__likes">{Math.floor(Math.random() * 100)} Likes</div>
-                            <div className = "msn__viewer__content__text__summary__date">{new Date().toLocaleString()}</div>
-                        </div>
+                       <MsnCommentsList comments = {comments}/>
+                        <MsnViewerSummary/>
                     </div>
                     <div className = "msn__viewer__content__closebutton"
                         onClick = {onViewerClose.bind(this)}>
