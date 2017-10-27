@@ -2,15 +2,15 @@ import React, {Component} from "react";
 import uuid from "uuid";
 
 
-const MsnItem = ({imgReference, onImageClose, id, likes, onImageUpvote, onImageDownvote, onImageClick}) => (
+const MsnItem = ({imageData, onImageClose, onImageUpvote, onImageDownvote, onImageClick}) => (
     <div className ="msn__row__item">        
-        <img src = {imgReference} onClick = {onImageClick.bind(this)}/>
+        <img src = {imageData.imageLink} onClick = {onImageClick.bind(this)}/>
         <div className = "msn__row__item__social">
-            <div className = "msn__row__item__social__icon" onClick = {onImageClose.bind(this, id)}>X</div>
-            <div className = "msn__row__item__social__icon" onClick = {onImageUpvote.bind(this, id)}>^</div>
-            <div className = "msn__row__item__social__icon" onClick = {onImageDownvote.bind(this, id)}>V</div>
+            <div className = "msn__row__item__social__icon" onClick = {onImageClose.bind(this, imageData.id)}>X</div>
+            <div className = "msn__row__item__social__icon" onClick = {onImageUpvote.bind(this, imageData.id)}>^</div>
+            <div className = "msn__row__item__social__icon" onClick = {onImageDownvote.bind(this, imageData.id)}>V</div>
         </div>            
-        <div className = "msn__row__item__summary">{likes} Likes</div>
+        <div className = "msn__row__item__summary">{imageData.likes} Likes | {imageData.comments.length} Comments</div>
     </div>    
 );
 
@@ -19,10 +19,9 @@ const MsnRow = ({gallery, onImageClose, onImageUpvote, onImageDownvote, onImageC
         {
             gallery.map((item) => {
                 if(item.visible){
-                    return <MsnItem imgReference = {item.imageLink} 
-                        key = {item.id} 
-                        id = {item.id}
-                        likes = {item.likes} 
+                    return <MsnItem     
+                        key = {item.id}                    
+                        imageData = {item}
                         onImageClose = {onImageClose}
                         onImageUpvote = {onImageUpvote}
                         onImageDownvote = {onImageDownvote}
@@ -47,7 +46,7 @@ class Masonry extends Component{
             return {
                 imageLink: currImage,
                 visible: true,
-                likes: 0,
+                likes: Math.floor(Math.random()*100),
                 id: uuid.v4(),
                 comments: [{
                     commentid: uuid.v4(),
@@ -181,13 +180,26 @@ class Masonry extends Component{
         });        
     }
 
+    handleNewComment = (id) => {
+        console.log("hi");
+        //make form appeart at bottom of comment list.
+
+        //add comment form control
+
+        //add comment form submit.
+        
+
+    }
+
     render(){
         return (
             <div className = "msn">
                 <MsnViewer isVisible = {this.state.isViewerVisible} 
-                    imageLink = {this.state.viewerImage.imageLink}
-                    comments = {this.state.viewerImage.comments}
-                    onViewerClose = {this.handleViewerClose}/>
+                    imageData = {this.state.viewerImage}                    
+                    onViewerClose = {this.handleViewerClose}
+                    onImageUpvote = {this.handleUpvote}
+                    onImageDownvote ={this.handleDownvote}
+                    onViewerComment = {this.handleNewComment}/>
                 <MsnRow gallery = {this.state.pictures} 
                     onImageClose = {this.handleVisibilityChange}
                     onImageUpvote = {this.handleUpvote}
@@ -213,32 +225,35 @@ const MsnCommentsList = ({comments}) => (
     </div>
 );
 
-const MsnViewerSummary = () => (
+const MsnViewerSummary = ({imageData, onViewerComment}) => (
     <div className ="msn__viewer__content__text__summary">
         <div className = "msn__viewer__content__text__summary__buttons">
             <div className = "msn__viewer__content__text__summary__buttons__item"></div>
             <div className = "msn__viewer__content__text__summary__buttons__item"></div>
+            <div className = "msn__viewer__content__text__summary__buttons__item--comment" onClick = {onViewerComment.bind(this, imageData.id)}></div>
         </div>
-        <div className = "msn__viewer__content__text__summary__likes">{Math.floor(Math.random() * 100)} Likes</div>
+        <div className = "msn__viewer__content__text__summary__likes">{imageData.likes} Likes</div>
         <div className = "msn__viewer__content__text__summary__date">{new Date().toLocaleString()}</div>
     </div>
 );
 
-const MsnViewer = ({isVisible, imageLink, onViewerClose, comments}) => {
+const MsnViewer = ({isVisible, imageData, onViewerClose, onViewerComment}) => {
     if(isVisible){
         return (
             <div className = "msn__viewer">        
                 <div className = "msn__viewer__content">            
                     <div className ="msn__viewer__content__picture">
-                        <img src = {imageLink}/>
+                        <img src = {imageData.imageLink}/>
                     </div>
                     <div className = "msn__viewer__content__text">
                         <div className ="msn__viewer__content__text__user">
                             <div className = "msn__viewer__content__text__user__icon"></div>
-                            <div className = "msn__viewer__content__text__user__name">aNameIsHere</div>
+                            <div className = "msn__viewer__content__text__user__name">aNameIsHere</div>                            
                         </div>
-                       <MsnCommentsList comments = {comments}/>
-                        <MsnViewerSummary/>
+                       <MsnCommentsList comments = {imageData.comments}/>
+                        <MsnViewerSummary                             
+                            imageData = {imageData}
+                            onViewerComment = {onViewerComment}/>
                     </div>
                     <div className = "msn__viewer__content__closebutton"
                         onClick = {onViewerClose.bind(this)}>
